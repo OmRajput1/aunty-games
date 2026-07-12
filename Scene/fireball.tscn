@@ -18,6 +18,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2m4rv"]
+radius = 5.0
+
 [node name="fireball" type="Node2D" unique_id=319073100]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=450030044]
@@ -26,3 +29,4 @@ sprite_frames = SubResource("SpriteFrames_s4n1h")
 [node name="killzone" parent="AnimatedSprite2D" unique_id=1116529582 instance=ExtResource("2_c2j4r")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1492918656]
+shape = SubResource("CircleShape2D_2m4rv")
