@@ -980,3 +980,6 @@ position = Vector2(-31, 55)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="platform/moving platform2" unique_id=1755361195]
 libraries/ = SubResource("AnimationLibrary_mn4nw")
 autoplay = &"platform2"
+
+[node name="lavarod" parent="platform/moving platform2" unique_id=833208182 instance=ExtResource("7_orc0r")]
+position = Vector2(143, -64)
