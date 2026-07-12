@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://wbm2gua5k0l" path="res://Assets/Super Mario Bros (NES) Music - Hurried Castle.mp3" id="6_uy40e"]
 [ext_resource type="PackedScene" uid="uid://bdywl1ichrq52" path="res://Scene/lavarod.tscn" id="7_orc0r"]
 [ext_resource type="PackedScene" uid="uid://b0xu2e7wahydu" path="res://Scene/fireball.tscn" id="8_d1qai"]
+[ext_resource type="PackedScene" uid="uid://dy5r2evaxt2yp" path="res://Scene/moving_platform.tscn" id="10_h2fhx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_40ul6"]
 
@@ -88,6 +89,82 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_yx57t"),
 &"firball2": SubResource("Animation_ua6o8")
+}
+
+[sub_resource type="Animation" id="Animation_7fj4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-48, -35)]
+}
+
+[sub_resource type="Animation" id="Animation_q5qfh"]
+resource_name = "platform1"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-48, 55), Vector2(-48, -35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ge5r"]
+_data = {
+&"RESET": SubResource("Animation_7fj4n"),
+&"platform1": SubResource("Animation_q5qfh")
+}
+
+[sub_resource type="Animation" id="Animation_efwur"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-31, 55)]
+}
+
+[sub_resource type="Animation" id="Animation_qgfg0"]
+resource_name = "platform2"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-31, 55), Vector2(-31, -35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mn4nw"]
+_data = {
+&"RESET": SubResource("Animation_efwur"),
+&"platform2": SubResource("Animation_qgfg0")
 }
 
 [node name="main game" type="Node2D" unique_id=1904942530]
@@ -887,3 +964,19 @@ autoplay = &"RESET"
 
 [node name="lavarod4" parent="." unique_id=1431257659 instance=ExtResource("7_orc0r")]
 position = Vector2(1944, -56)
+
+[node name="platform" type="Node2D" parent="." unique_id=1578562002]
+
+[node name="moving platform" parent="platform" unique_id=320748763 instance=ExtResource("10_h2fhx")]
+position = Vector2(-48, -35)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="platform/moving platform" unique_id=2073414007]
+libraries/ = SubResource("AnimationLibrary_1ge5r")
+autoplay = &"platform1"
+
+[node name="moving platform2" parent="platform" unique_id=656016387 instance=ExtResource("10_h2fhx")]
+position = Vector2(-31, 55)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="platform/moving platform2" unique_id=1755361195]
+libraries/ = SubResource("AnimationLibrary_mn4nw")
+autoplay = &"platform2"
