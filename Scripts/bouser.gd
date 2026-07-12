@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var main = get_tree().get_root().get_node("attack")
+@onready var projectile = load("res://Scene/projectile.tscn")
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -17,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left", "right")
 	
 	if direction > 0:
 		animated_sprite_2d.flip_h = true
@@ -33,5 +35,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
 	move_and_slide()
+	shoot()
+
+func shoot():
+	if Input.is_action_just_pressed("attack"):
+		var instance = projectile.instantiate()
+		instance.dir = rotation
+		instance.spawnPos = global_position
+		instance .spawnRot = rotation
+		get_tree().current_scene.add_child(instance)
