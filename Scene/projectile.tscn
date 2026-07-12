@@ -26,10 +26,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40ul6"]
+radius = 8.998424
+height = 25.995447
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqtq8"]
 radius = 4.9991245
 height = 19.996498
 
-[node name="projectile" type="CharacterBody2D" unique_id=1510969344]
+[node name="projectile" type="CharacterBody2D" unique_id=615270345]
 script = ExtResource("1_yqtq8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1015904136]
@@ -37,7 +41,18 @@ sprite_frames = SubResource("SpriteFrames_s4n1h")
 frame_progress = 0.14665674
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1286219035]
-position = Vector2(-1, 0)
+[node name="projectile_shape" type="Area2D" parent="." unique_id=867402535]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_shape" unique_id=1286219035]
+position = Vector2(3, 0)
 rotation = -1.5520806
 shape = SubResource("CapsuleShape2D_40ul6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=872743723]
+position = Vector2(3, 0)
+rotation = -1.5520806
+shape = SubResource("CapsuleShape2D_yqtq8")
+
+[connection signal="body_entered" from="projectile_shape" to="." method="_on_projectile_shape_body_entered"]

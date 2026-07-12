@@ -13,3 +13,9 @@ func _physics_process(delta: float) -> void:
 	# Use Vector2.RIGHT (1, 0) so it shoots forward along its rotation angle
 	velocity = Vector2.RIGHT.rotated(dir) * SPEED
 	move_and_slide()
+
+
+func _on_projectile_shape_body_entered(body: Node2D) -> void:
+	if body.has_method("_HitEff"):
+		body._HitEff()
+		queue_free()

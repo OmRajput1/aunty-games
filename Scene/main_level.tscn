@@ -255,7 +255,7 @@ light_mask = 513
 visibility_layer = 513
 
 [node name="Node2D" type="Node2D" parent="." unique_id=2028821618]
-position = Vector2(2353, -17)
+position = Vector2(2338, -13)
 
 [node name="projectile" parent="Node2D" unique_id=1510969344 instance=ExtResource("1_ll3eg")]
 
